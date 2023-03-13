@@ -6,7 +6,7 @@
 - name: Add a zshrc entry.
   ansible.builtin.blockinfile:
     path: "~/.zshrc"
-    marker: "{mark} ANSIBLE MANAGED BLOCK: YUBIKEY"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: YUBIKEY"
     block: >
       if [[ -z $SSH_CONNECTION ]]; then
         export GPG_TTY="$(tty)"
