@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+platforms:
+  - name: archlinux
+    box: archlinux/archlinux
+    cpus: 1
+    memory: 512
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

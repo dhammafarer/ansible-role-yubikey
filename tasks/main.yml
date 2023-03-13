@@ -1,0 +1,17 @@
+---
+# tasks file for yubikey
+- name: Import tasks for os_family.
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] }}.yml"
+
+- name: Add a zshrc entry.
+  ansible.builtin.blockinfile:
+    path: "~/.zshrc"
+    marker: "{mark} ANSIBLE MANAGED BLOCK: YUBIKEY"
+    block: >
+      if [[ -z $SSH_CONNECTION ]]; then
+        export GPG_TTY="$(tty)"
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+        gpgconf --launch gpg-agent
+      fi
+    mode: "0644"
+    create: true
